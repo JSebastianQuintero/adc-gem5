@@ -1,0 +1,5 @@
+.sim.log
+sim.log
+benchmarks/simFisica.img
+scripts/__pycache__/
+se_results/
