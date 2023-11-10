@@ -5,7 +5,7 @@
 	.bss 
 	X: .zero  32768        // vector X(4096)*8
 	Y: .zero  32768        // Vector Y(4096)*8
-        Z: .zero  32768        // Vector Y(4096)*8
+	Z: .zero  32768        // Vector Y(4096)*8
 
 	.arch armv8-a
 	.text
@@ -25,14 +25,37 @@ main:
 	bl	m5_dump_stats
 
 	ldr     x0, N
-    	ldr     x10, =Alpha
-    	ldr     x2, =X
-    	ldr     x3, =Y
+	ldr     x10, =Alpha
+	ldr     x2, =X
+	ldr     x3, =Y
 	ldr     x4, =Z
 
 //---------------------- CODE HERE ------------------------------------
 
 
+ADD X5, XZR,XZR 					// inicializo i=0 x5=i
+SCVTF D10, X10 						// Convierto alpha en punto flotante 
+
+loop:
+    SUB X6, X0, X5
+    CBZ X6, end 					// Veo si sigue cumpliendo i<N
+
+	// Cargo X[i] y Y[i] en x12 y x13
+	LDUR D12,[X2] 				
+    LDUR D13,[X3]					
+
+	// alpha * X[i] + Y[i]
+    FMUL D7, D10, D12 				
+    FADD D7, D7, D13 
+	
+	// Guardamos en Z[i] 
+    STUR D7, [X4]				
+    ADD X5, X5, #1 //Incremento i
+	ADD X2, X2, #8 
+	ADD X3, X3, #8 
+	ADD X4, X4, #8 
+    B loop
+end:
 
 //---------------------- END CODE -------------------------------------
 
