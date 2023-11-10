@@ -36,25 +36,25 @@ main:
 ADD X5, XZR,XZR 					// inicializo i=0 x5=i
 SCVTF D10, X10 						// Convierto alpha en punto flotante 
 
-loop3:
+loop:
     SUB X6, X0, X5
     CBZ X6, end 					// Veo si sigue cumpliendo i<N
 
 	// Cargo X[i] y Y[i] en x12 y x13
-	LDUR d12,[X2] 				
-    LDUR d13,[X3]					
+	LDUR D12,[X2] 				
+    LDUR D13,[X3]					
 
 	// alpha * X[i] + Y[i]
     FMUL D7, D10, D12 				
     FADD D7, D7, D13 
 	
 	// Guardamos en Z[i] 
-    STUR d7, [X4]				
-    ADD X5, X5, #1 					// Incremento i
-    //LSL X2, X5, 3
-    //LSL X3, X5, 3
-    //LSL X4, X5, 3
-    B loop3
+    STUR D7, [X4]				
+    ADD X5, X5, #1 //Incremento i
+	ADD X2, X2, #8 
+	ADD X3, X3, #8 
+	ADD X4, X4, #8 
+    B loop
 end:
 
 //---------------------- END CODE -------------------------------------
