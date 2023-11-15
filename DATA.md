@@ -1,218 +1,52 @@
 # Data collected for exercise b)
 
-### Number of cycles
-
-##### 1 via
-
-- 8: 221577
-
-- 16: 221621
-
-- 32: 221837
-
-- 64: 202451
-
-- 128: 246549
-
-##### 2 via
-
-- 8: 187681.0
-
-- 16: 187793.0
-
-- 32: 187793.0
-
-- 64: 187793.0
-
-- 128: 246549.0
-
-##### 4 via
-
-- 8: 246931.0
-
-- 16: 246567.0
-
-- 32: 246567.0
-
-- 64: 246567.0
-
-- 128: 246549.0
-
-##### 8 via
-
-- 8: 246943.0
-
-- 16: 246567.0
-
-- 32: 246567.0
-
-- 64: 246567.0
-
-- 128: 246549.0
-
-### Idle cycles
-
-// ciclos en los que el procesador no hizo nada (stalls)
-
-##### 1 via
-
-- 8: 149520
-
-- 16: 149564
-
-- 32: 149760
-
-- 64: 140418
-
-- 128: 187929
-
-##### 2 via
-
-- 8: 122350.0
-
-- 16: 122412.0
-
-- 32: 122412.0
-
-- 64: 122412.0
-
-- 128: 187929.0
-
-##### 4 via
-
-- 8: 188304.0
-
-- 16: 187940.0
-
-- 32: 187940.0
-
-- 64: 187940.0
-
-- 128: 187929.0
-
-##### 8 via
-
-- 8: 188316.0
-
-- 16: 187940.0
-
-- 32: 187940.0
-
-- 64: 187940
-
-- 128: 187929.0
-
-### Overall hits
-
-##### 1 via
-
-- 8: 793
-
-- 16: 793
-
-- 32: 790
-
-- 64: 6102
-
-- 128: 10760
-
-##### 2 via
-
-- 8: 5300.0
-
-- 16: 5301.0
-
-- 32: 5301.0
-
-- 64: 5301.0
-
-- 128: 10760.0
-
-##### 4 via
-
-- 8: 10755.0
-
-- 16: 10755.0
-
-- 32: 10755.0
-
-- 64: 10755.0
-
-- 128: 10760.0
-
-##### 8 via
-
-- 8: 10755.0
-
-- 16: 10755.0
-
-- 32: 10755.0
-
-- 64: 10755
-
-- 128: 10760.0
-
-### Read request hits
-
-##### 1 via
-
-- 8: 479
-
-- 16: 479
-
-- 32: 477
-
-- 64: 5902
-
-- 128: 7688
-
-##### 2 vias
-
-- 8: 5175.0
-
-- 16: 5172.0
-
-- 32: 5172.0
-
-- 64: 5172.0
-
-- 128: 7688.0
-
-##### 4 vias
-
-- 8: 7685.0
-
-- 16: 7685.0
-
-- 32: 7685.0
-
-- 64: 7685.0
-
-- 128: 7688.0
-
-##### 8 vias
-
-- 8: 7685.0
-
-- 16: 7685.0
-
-- 32: 7685.0
-
-- 64: 7685
-
-- 128: 7688.0
-
----
+#### 1 via
+
+| parameter         |    8kB |   16kB |   32kB |   64kB |  128kB |
+| ----------------- | -----: | -----: | -----: | -----: | -----: |
+| Number of cycles  | 221577 | 221621 | 221837 | 202451 | 246549 |
+| Idle cycles       | 149520 | 149564 | 149760 | 140418 | 187929 |
+| Overall hits      |    793 |    793 |    790 |   6102 |  10760 |
+| Read request hits |    479 |    479 |    477 |   5902 |   7688 |
+
+#### 2 vias
+
+| parameter         |    8kB |   16kB |   32kB |   64kB |  128kB |
+| ----------------- | -----: | -----: | -----: | -----: | -----: |
+| Number of cycles  | 187681 | 187793 | 187793 | 187793 | 246549 |
+| Idle cycles       | 122350 | 122412 | 122412 | 122412 | 187929 |
+| Overall hits      |   5300 |   5301 |   5301 |   5301 |  10760 |
+| Read request hits |   5175 |   5172 |   5172 |   5172 |   7688 |
+
+#### 4 vias
+
+| parameter         |    8kB |   16kB |   32kB |   64kB |  128kB |
+| ----------------- | -----: | -----: | -----: | -----: | -----: |
+| Number of cycles  | 246931 | 246567 | 246567 | 246567 | 246549 |
+| Idle cycles       | 188304 | 187940 | 187940 | 187940 | 187929 |
+| Overall hits      |  10755 |  10755 |  10755 |  10755 |  10760 |
+| Read request hits |   7685 |   7685 |   7685 |   7685 |   7688 |
+
+#### 8 vias
+
+| parameter         |    8kB |   16kB |   32kB |   64kB |  128kB |
+| ----------------- | -----: | -----: | -----: | -----: | -----: |
+| Number of cycles  | 246943 | 246567 | 246567 | 246567 | 246549 |
+| Idle cycles       | 188316 | 187940 | 187940 | 187940 | 187929 |
+| Overall hits      |  10755 |  10755 |  10755 |  10755 |  10760 |
+| Read request hits |   7685 |   7685 |   7685 |   7685 |   7688 |
 
 ## Ejercicio e: técnicas de mejora
 
 Con caché de 1 vía y 32kB
 
-Primero teniamos un procesador re choto después le metimos loop unrolling con 2 iteraciones por ciclo, después cambiamos la condición del loop y por último hicimos 4 iteracion por ciclo
+Inicialmente, contábamos con un procesador de baja calidad; luego aplicamos la técnica de loop unrolling con dos iteraciones por ciclo (en donde se intenta reducir el número de ciclos en el loop aumentando las iteraciones en cada uno). Posteriormente modificamos la condición del bucle, sumado a eso refactorizamos el código. Finalmente decidimos aumentar a cuatro iteraciones por ciclo, de esta forma logramos reducir notoriamente la cantidad de ciclos inactivos impactando así en la cantidad de ciclos totales.
 
-| parámetro         | sin nada | loop unroling 2 | changed loop condition |
-| ----------------- | -------: | --------------: | ---------------------: |
-| Number of cycles  |   221837 |          207058 |                 206124 |
-| Idle cycles       |   149760 |          130452 |                 131564 |
-| Overall hits      |      790 |             463 |                    479 |
-| Read request hits |      477 |             458 |                    471 |
+| parámetro         | sin modificaciones | loop unrolling 2 | changed loop condition | code refactor | loop unroling 4 | out_of_order |
+| ----------------- | -----------------: | ---------------: | ---------------------: | ------------: | --------------: | -----------: |
+| Number of cycles  |             221837 |           207058 |                 206124 |        198761 |          152423 |        36308 |
+| Idle cycles       |             149760 |           130452 |                 131564 |        147795 |          107212 |          225 |
+| Overall hits      |                790 |              463 |                    479 |          2349 |            4650 |         5997 |
+| Read request hits |                477 |              458 |                    471 |          2347 |            2893 |         4406 |
+
+Nota: La cache de instrucciones solo lee, la de datos escribe o lee (para analizar).
