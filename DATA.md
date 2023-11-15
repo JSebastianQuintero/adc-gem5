@@ -208,18 +208,11 @@
 
 Con caché de 1 vía y 32kB
 
-### Number of cycles
+Primero teniamos un procesador re choto después le metimos loop unrolling con 2 iteraciones por ciclo, después cambiamos la condición del loop y por último hicimos 4 iteracion por ciclo
 
-- 207058.0
-
-### Idle cycles
-
-- 130452.0
-
-### Overall hits
-
-- 463.0
-
-### Read request hits
-
-- 458.0
+| parámetro         | sin nada | loop unroling 2 | changed loop condition |
+| ----------------- | -------: | --------------: | ---------------------: |
+| Number of cycles  |   221837 |          207058 |                 206124 |
+| Idle cycles       |   149760 |          130452 |                 131564 |
+| Overall hits      |      790 |             463 |                    479 |
+| Read request hits |      477 |             458 |                    471 |

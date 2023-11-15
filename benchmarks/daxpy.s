@@ -37,8 +37,7 @@ ADD X5, XZR, XZR 					// initialize i=0 x5=i
 SCVTF D10, X10 						// convert alpha to float point 
 
 loop:
-    SUB X6, X0, X5
-    CBZ X6, end 					// Check i<N statement
+    
 
 // ---- i
 	// Load X[i],Y[i] to x12,x13 respectively
@@ -70,7 +69,10 @@ loop:
 	ADD X2, X2, #16 
 	ADD X3, X3, #16 
 	ADD X4, X4, #16
-    B loop
+
+	// loop condition
+	CMP X5, X0
+    blt loop
 end:
 
 //---------------------- END CODE -------------------------------------
