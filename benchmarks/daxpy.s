@@ -33,27 +33,43 @@ main:
 //---------------------- CODE HERE ------------------------------------
 
 
-ADD X5, XZR,XZR 					// initialize i=0 x5=i
+ADD X5, XZR, XZR 					// initialize i=0 x5=i
 SCVTF D10, X10 						// convert alpha to float point 
 
 loop:
     SUB X6, X0, X5
     CBZ X6, end 					// Check i<N statement
 
+// ---- i
 	// Load X[i],Y[i] to x12,x13 respectively
 	LDUR D12,[X2] 				
     LDUR D13,[X3]					
-
+	
 	// alpha * X[i] + Y[i]
     FMUL D7, D10, D12 				
     FADD D7, D7, D13 
 	
 	// Load result to Z[i] 
-    STUR D7, [X4]				
-    ADD X5, X5, #1 // i++
-	ADD X2, X2, #8 
-	ADD X3, X3, #8 
-	ADD X4, X4, #8 
+    STUR D7, [X4]
+
+// ---- i+1
+	// Load X[i+1],Y[i+1] to x12,x13 respectively
+	LDUR D12,[X2,#8] 				
+    LDUR D13,[X3,#8]
+
+	// alpha * X[i+1] + Y[+1i]
+    FMUL D7, D10, D12 				
+    FADD D7, D7, D13 
+
+	// Load result to Z[i+1] 
+    STUR D7, [X4,#8]		
+
+// ----
+	// Index increment				
+    ADD X5, X5, #2 // i++
+	ADD X2, X2, #16 
+	ADD X3, X3, #16 
+	ADD X4, X4, #16
     B loop
 end:
 

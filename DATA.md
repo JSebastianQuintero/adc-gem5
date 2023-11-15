@@ -52,6 +52,8 @@
 
 ### Idle cycles
 
+// ciclos en los que el procesador no hizo nada (stalls)
+
 ##### 1 via
 
 - 8: 149520
@@ -201,3 +203,23 @@
 - 128: 7688.0
 
 ---
+
+## Ejercicio e: técnicas de mejora
+
+Con caché de 1 vía y 32kB
+
+### Number of cycles
+
+- 207058.0
+
+### Idle cycles
+
+- 130452.0
+
+### Overall hits
+
+- 463.0
+
+### Read request hits
+
+- 458.0
